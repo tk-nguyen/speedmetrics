@@ -4,7 +4,11 @@ A simple rust application to measure your internet speed with [Ookla Speedtest C
 
 This program expose prometheus metrics at `http://localhost:9090/metrics` when running.
 
-Currently only have 3 metrics for now.
+Currently only have 3 metrics for now:
+
+- `upload_speed`
+- `download_speed`
+- `ping_latency`
 
 ## License
 
