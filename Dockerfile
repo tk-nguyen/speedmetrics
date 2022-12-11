@@ -18,8 +18,7 @@ RUN install_packages xz-utils ca-certificates && \
     tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz && \
     tar xzvf /tmp/ookla-speedtest-${SPEEDTEST_CLI_VERSION}-linux-x86_64.tgz && \
     cp speedtest /usr/local/bin && \
-    rm -rf speedtest* && \
-    speedtest --accept-license
+    rm -rf speedtest*
 
 ENTRYPOINT ["/init"]
 

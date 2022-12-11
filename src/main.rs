@@ -30,16 +30,11 @@ fn main() -> Result<()> {
     let registry = prom_metrics.setup_prometheus();
 
     info!("Starting speedtest...");
-    info!(
-        "{}",
-        String::from_utf8(
-            Command::new("speedtest")
-                .args(["--version"])
-                .output()
-                .expect("Failed to run speedtest. Please make sure speedtest-cli is in your PATH.")
-                .stdout
-        )?
-    );
+    info!("Running for the first time to accept license...");
+    Command::new("speedtest")
+        .args(["--accept-license"])
+        .output()
+        .expect("Failed to run speedtest. Please make sure speedtest-cli is in your PATH.");
 
     thread::spawn(move || loop {
         let result = run_speedtest().unwrap();
@@ -56,8 +51,8 @@ fn main() -> Result<()> {
     let thread_registry = Arc::new(Mutex::new(registry));
     for client in listener.incoming() {
         let client = client?;
-        let mut reader = BufReader::new(client.try_clone().unwrap());
-        let mut writer = BufWriter::new(client.try_clone().unwrap());
+        let mut reader = BufReader::new(client.try_clone()?);
+        let mut writer = BufWriter::new(client.try_clone()?);
         let registry = thread_registry.clone();
         thread::spawn(move || {
             let mut request = String::new();
