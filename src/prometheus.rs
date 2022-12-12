@@ -20,18 +20,18 @@ impl PromMetrics {
         let mut registry = <Registry>::default();
 
         registry.register(
-            "upload_speed",
-            "Upload speed of the internet connection in bytes",
+            "upload_speed_bytes",
+            "Upload speed of the internet connection",
             Box::new(self.upload_gauge.clone()),
         );
         registry.register(
-            "download_speed",
-            "Download speed of the internet connection in bytes",
+            "download_speed_bytes",
+            "Download speed of the internet connection",
             Box::new(self.download_gauge.clone()),
         );
         registry.register(
-            "ping_latency",
-            "Latency of the connection in milliseconds",
+            "ping_latency_milliseconds",
+            "Latency of the connection",
             Box::new(self.ping_gauge.clone()),
         );
         registry

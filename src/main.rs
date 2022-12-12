@@ -32,7 +32,7 @@ fn main() -> Result<()> {
     info!("Starting speedtest...");
     info!("Running for the first time to accept license...");
     Command::new("speedtest")
-        .args(["--accept-license"])
+        .arg("--accept-license")
         .output()
         .expect("Failed to run speedtest. Please make sure speedtest-cli is in your PATH.");
 

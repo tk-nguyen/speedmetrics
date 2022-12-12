@@ -10,7 +10,7 @@ use tracing::{error, info};
 pub fn run_speedtest() -> Result<SpeedtestResult> {
     info!("Measuring internet speed...");
     let mut child = Command::new("speedtest")
-        .args(["-f", "json"])
+        .args(&["-f", "json"])
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .spawn()
