@@ -35,7 +35,7 @@ pub fn spawn_server(registry: Registry) -> Result<()> {
                         concat!("HTTP/1.1 200 OK\r\n", "Content-Type: text/plain\r\n"),
                         format!("Content-Length: {}\r\n", res.len()),
                         "\r\n",
-                        format!("{}\r\n", String::from_utf8_lossy(&res))
+                        format!("{}", String::from_utf8_lossy(&res))
                     )
                     .expect("Cannot respond to client!")
                 }
@@ -55,7 +55,7 @@ pub fn spawn_server(registry: Registry) -> Result<()> {
                         concat!("HTTP/1.1 200 OK\r\n", "Content-Type: text/html\r\n"),
                         format!("Content-Length: {}\r\n", res.len()),
                         "\r\n",
-                        format!("{}\r\n", res)
+                        format!("{}", res)
                     )
                     .expect("Cannot respond to client!")
                 }
@@ -78,7 +78,7 @@ pub fn spawn_server(registry: Registry) -> Result<()> {
                         ),
                         format!("Content-Length: {}\r\n", res.len()),
                         "\r\n",
-                        format!("{}\r\n", res)
+                        format!("{}", res)
                     )
                     .expect("Cannot respond to client!")
                 }
