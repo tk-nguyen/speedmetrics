@@ -13,5 +13,5 @@ RUN install_packages dumb-init curl gpg ca-certificates && \
 ENTRYPOINT ["dumb-init"]
 
 COPY --from=build /app/target/release/speedmetrics /app/
-EXPOSE 9090
+EXPOSE 9027
 CMD ["/app/speedmetrics"]
