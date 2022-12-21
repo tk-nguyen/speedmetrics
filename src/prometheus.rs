@@ -3,16 +3,16 @@ use std::sync::atomic::AtomicU64;
 use prometheus_client::{metrics::gauge::Gauge, registry::Registry};
 
 pub struct PromMetrics {
-    pub upload_gauge: Gauge,
-    pub download_gauge: Gauge,
+    pub upload_gauge: Gauge<u64, AtomicU64>,
+    pub download_gauge: Gauge<u64, AtomicU64>,
     pub ping_gauge: Gauge<f64, AtomicU64>,
 }
 
 impl PromMetrics {
     pub fn new() -> Self {
         Self {
-            upload_gauge: Gauge::default(),
-            download_gauge: Gauge::default(),
+            upload_gauge: Gauge::<u64, AtomicU64>::default(),
+            download_gauge: Gauge::<u64, AtomicU64>::default(),
             ping_gauge: Gauge::<f64, AtomicU64>::default(),
         }
     }
